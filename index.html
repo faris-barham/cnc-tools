@@ -78,125 +78,136 @@
 
   <div class="box">
 
-    <h1>معلومات الأداة</h1>
+    <h1>Tool Information</h1>
 
-    <div class="item">
-      <div class="title">رقم الأداة</div>
-      <div class="value" id="showToolNumber">T14</div>
-      <input class="admin" id="toolNumber" value="T14">
-    </div>
+<div class="item">
+  <div class="title">Machine | מכונה</div>
+  <div class="value" id="showMachine">VF-3</div>
 
-    <div class="item">
-      <div class="title">نوع المكينة</div>
-      <div class="value" id="showMachine">VF-3</div>
-      <select class="admin" id="machine">
-        <option>VF-3</option>
-        <option>VF-2</option>
-        <option>VF-4</option>
-        <option>CNC Milling</option>
-        <option>CNC Turning</option>
-      </select>
-    </div>
+  <select class="admin" id="machine">
+    <option>VF-3</option>
+    <option>VF-2</option>
+    <option>VF-4</option>
+    <option>CNC Milling</option>
+    <option>CNC Turning</option>
+  </select>
+</div>
 
-    <div class="item">
-      <div class="title">نوع الأداة</div>
-      <div class="value" id="showToolType">End Mill</div>
-      <select class="admin" id="toolType">
+<div class="item">
+  <div class="title">Tool Number | מספר כלי</div>
+  <div class="value" id="showToolNumber">T14</div>
 
-  <option>End Mill</option>
-  <option>End Mill Super Face</option>
-  <option>Ball Nose</option>
-  <option>Corner Radius</option>
-  <option>Face Mill</option>
-  <option>Shell Mill</option>
-  <option>Chamfer Mill</option>
-  <option>Thread Mill</option>
-  <option>Slot Mill</option>
-  <option>T-Slot Cutter</option>
-  <option>Dovetail Cutter</option>
-  <option>Woodruff Cutter</option>
-  <option>Fly Cutter</option>
+  <input class="admin" id="toolNumber" value="T14">
+</div>
 
-  <option>Drill</option>
-  <option>Center Drill</option>
-  <option>Spot Drill</option>
-  <option>Gun Drill</option>
-  <option>Step Drill</option>
+<div class="item">
+  <div class="title">Tool Type | סוג כלי</div>
+  <div class="value" id="showToolType">End Mill</div>
 
-  <option>Reamer</option>
-  <option>Boring Bar</option>
-  <option>Counterbore</option>
-  <option>Countersink</option>
+  <select class="admin" id="toolType">
 
-  <option>Tap</option>
-  <option>Thread Former</option>
+    <option>End Mill</option>
+    <option>End Mill Super Face</option>
+    <option>Ball Nose</option>
+    <option>Corner Radius</option>
+    <option>Face Mill</option>
+    <option>Shell Mill</option>
+    <option>Chamfer Mill</option>
+    <option>Thread Mill</option>
+    <option>Slot Mill</option>
+    <option>T-Slot Cutter</option>
+    <option>Dovetail Cutter</option>
+    <option>Woodruff Cutter</option>
+    <option>Fly Cutter</option>
 
-  <option>Grooving Tool</option>
-  <option>Parting Tool</option>
-  <option>Turning Tool</option>
+    <option>Drill</option>
+    <option>Center Drill</option>
+    <option>Spot Drill</option>
+    <option>Gun Drill</option>
+    <option>Step Drill</option>
 
-  <option>Insert Tool</option>
-  <option>Carbide Insert</option>
+    <option>Reamer</option>
+    <option>Boring Bar</option>
+    <option>Counterbore</option>
+    <option>Countersink</option>
 
-  <option>Probe</option>
-  <option>Engraving Tool</option>
+    <option>Tap</option>
+    <option>Thread Former</option>
 
-  <option>Diamond Tool</option>
-  <option>HSS Cutter</option>
-  <option>Carbide Cutter</option>
+    <option>Grooving Tool</option>
+    <option>Parting Tool</option>
+    <option>Turning Tool</option>
 
-  <option>Custom Tool</option>
+    <option>Insert Tool</option>
+    <option>Carbide Insert</option>
 
-</select>
-    </div>
+    <option>Probe</option>
+    <option>Engraving Tool</option>
 
-    <div class="item">
-      <div class="title">طول الأداة</div>
-      <div class="value" id="showToolLength">75 mm</div>
-      <input class="admin" id="toolLength" placeholder="مثال: 75 mm">
-    </div>
+    <option>Diamond Tool</option>
+    <option>HSS Cutter</option>
+    <option>Carbide Cutter</option>
 
-    <div class="item">
-      <div class="title">عدد الأسنان</div>
-      <div class="value" id="showTeeth">4</div>
-      <select class="admin" id="teeth">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-      </select>
-    </div>
+    <option>Custom Tool</option>
 
-    <div class="item">
-      <div class="title">نوع الهولدر</div>
-      <div class="value" id="showHolder">ER32</div>
-      <select class="admin" id="holder">
-        <option>ER16</option>
-        <option>ER20</option>
-        <option>ER25</option>
-        <option>ER32</option>
-        <option>ER40</option>
-        <option>Side Lock</option>
-        <option>Hydraulic</option>
-      </select>
-    </div>
+  </select>
+</div>
 
-    <div class="item">
-      <div class="title">طول الأداة مع الهولدر</div>
-      <div class="value" id="showTotalLength">120 mm</div>
-      <input class="admin" id="totalLength" placeholder="مثال: 120 mm">
-    </div>
+<div class="item">
+  <div class="title">Diameter | קוטר</div>
+  <div class="value" id="showDiameter">10 mm</div>
 
-    <div class="item">
-      <div class="title">قطر الأداة</div>
-      <div class="value" id="showDiameter">10 mm</div>
-      <input class="admin" id="diameter" placeholder="مثال: 10 mm">
-    </div>
+  <input class="admin" id="diameter" placeholder="10 mm">
+</div>
 
-    <button class="admin" onclick="saveData()">حفظ التعديلات</button>
-    <button class="small-btn" onclick="adminLogin()">دخول الإدارة</button>
+<div class="item">
+  <div class="title">Tool Length | אורך כלי</div>
+  <div class="value" id="showToolLength">75 mm</div>
+
+  <input class="admin" id="toolLength" placeholder="75 mm">
+</div>
+
+<div class="item">
+  <div class="title">Teeth | שיניים</div>
+  <div class="value" id="showTeeth">4</div>
+
+  <select class="admin" id="teeth">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+  </select>
+</div>
+
+<div class="item">
+  <div class="title">Total Length With Holder | אורך כולל עם הולדר</div>
+  <div class="value" id="showTotalLength">120 mm</div>
+
+  <input class="admin" id="totalLength" placeholder="120 mm">
+</div>
+
+<div class="item">
+  <div class="title">Holder Type | סוג הולדר</div>
+  <div class="value" id="showHolder">ER32</div>
+
+  <select class="admin" id="holder">
+    <option>ER16</option>
+    <option>ER20</option>
+    <option>ER25</option>
+    <option>ER32</option>
+    <option>ER40</option>
+    <option>Side Lock</option>
+    <option>Hydraulic</option>
+  </select>
+</div>
+
+<button class="admin" onclick="saveData()">Save Changes</button>
+
+<button class="small-btn" onclick="adminLogin()">
+  Admin Login
+</button>
 
   </div>
 <script type="module">
