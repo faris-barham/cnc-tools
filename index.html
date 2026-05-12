@@ -177,8 +177,10 @@
   const db = getFirestore(app);
 
   const PASSWORD = "1234";
-  const toolRef = doc(db, "tools", "T14");
+  const urlParams = new URLSearchParams(window.location.search);
+const currentTool = urlParams.get("tool") || "T14";
 
+const toolRef = doc(db, "tools", currentTool);
   async function loadData() {
     const snap = await getDoc(toolRef);
 
