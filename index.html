@@ -160,90 +160,90 @@
     <button class="small-btn" onclick="adminLogin()">دخول الإدارة</button>
 
   </div>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  <script>
-    const PASSWORD = "1234";
+  const firebaseConfig = {
+    apiKey: "AIzaSyCpFul8SVzrKAffWpPhDHjQoobJ8gnwazo",
+    authDomain: "cnc-tools-33edd.firebaseapp.com",
+    projectId: "cnc-tools-33edd",
+    storageBucket: "cnc-tools-33edd.firebasestorage.app",
+    messagingSenderId: "847482467099",
+    appId: "1:847482467099:web:ab901c55df0b48293f59be"
+  };
 
-    function getData(key, defaultValue) {
-      return localStorage.getItem(key) || defaultValue;
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const PASSWORD = "1234";
+  const toolRef = doc(db, "tools", "T14");
+
+  async function loadData() {
+    const snap = await getDoc(toolRef);
+
+    const data = snap.exists() ? snap.data() : {
+      toolNumber: "T14",
+      machine: "VF-3",
+      toolType: "End Mill",
+      toolLength: "75 mm",
+      teeth: "4",
+      holder: "ER32",
+      totalLength: "120 mm",
+      diameter: "10 mm"
+    };
+
+    document.getElementById("showToolNumber").innerText = data.toolNumber;
+    document.getElementById("showMachine").innerText = data.machine;
+    document.getElementById("showToolType").innerText = data.toolType;
+    document.getElementById("showToolLength").innerText = data.toolLength;
+    document.getElementById("showTeeth").innerText = data.teeth;
+    document.getElementById("showHolder").innerText = data.holder;
+    document.getElementById("showTotalLength").innerText = data.totalLength;
+    document.getElementById("showDiameter").innerText = data.diameter;
+
+    document.getElementById("toolNumber").value = data.toolNumber;
+    document.getElementById("machine").value = data.machine;
+    document.getElementById("toolType").value = data.toolType;
+    document.getElementById("toolLength").value = data.toolLength;
+    document.getElementById("teeth").value = data.teeth;
+    document.getElementById("holder").value = data.holder;
+    document.getElementById("totalLength").value = data.totalLength;
+    document.getElementById("diameter").value = data.diameter;
+  }
+
+  window.adminLogin = function () {
+    const pass = prompt("أدخل كلمة السر");
+
+    if (pass === PASSWORD) {
+      document.querySelectorAll(".admin").forEach(item => {
+        item.style.display = "block";
+      });
+      alert("تم فتح وضع الإدارة");
+    } else {
+      alert("كلمة السر خطأ");
     }
+  }
 
-    function loadData() {
-      const toolNumber = getData("toolNumber", "T14");
-      const machine = getData("machine", "VF-3");
-      const toolType = getData("toolType", "End Mill");
-      const toolLength = getData("toolLength", "75 mm");
-      const teeth = getData("teeth", "4");
-      const holder = getData("holder", "ER32");
-      const totalLength = getData("totalLength", "120 mm");
-      const diameter = getData("diameter", "10 mm");
+  window.saveData = async function () {
+    await setDoc(toolRef, {
+      toolNumber: document.getElementById("toolNumber").value,
+      machine: document.getElementById("machine").value,
+      toolType: document.getElementById("toolType").value,
+      toolLength: document.getElementById("toolLength").value,
+      teeth: document.getElementById("teeth").value,
+      holder: document.getElementById("holder").value,
+      totalLength: document.getElementById("totalLength").value,
+      diameter: document.getElementById("diameter").value
+    });
 
-      document.getElementById("showToolNumber").innerText = toolNumber;
-      document.getElementById("showMachine").innerText = machine;
-      document.getElementById("showToolType").innerText = toolType;
-      document.getElementById("showToolLength").innerText = toolLength;
-      document.getElementById("showTeeth").innerText = teeth;
-      document.getElementById("showHolder").innerText = holder;
-      document.getElementById("showTotalLength").innerText = totalLength;
-      document.getElementById("showDiameter").innerText = diameter;
+    await loadData();
+    alert("تم حفظ التعديلات على Firebase");
+  }
 
-      document.getElementById("toolNumber").value = toolNumber;
-      document.getElementById("machine").value = machine;
-      document.getElementById("toolType").value = toolType;
-      document.getElementById("toolLength").value = toolLength;
-      document.getElementById("teeth").value = teeth;
-      document.getElementById("holder").value = holder;
-      document.getElementById("totalLength").value = totalLength;
-      document.getElementById("diameter").value = diameter;
-    }
-
-    function adminLogin() {
-      const pass = prompt("أدخل كلمة السر");
-
-      if (pass === PASSWORD) {
-        document.querySelectorAll(".admin").forEach(item => {
-          item.style.display = "block";
-        });
-        alert("تم فتح وضع الإدارة");
-      } else {
-        alert("كلمة السر خطأ");
-      }
-    }
-
-    function saveData() {
-      localStorage.setItem("toolNumber", document.getElementById("toolNumber").value);
-      localStorage.setItem("machine", document.getElementById("machine").value);
-      localStorage.setItem("toolType", document.getElementById("toolType").value);
-      localStorage.setItem("toolLength", document.getElementById("toolLength").value);
-      localStorage.setItem("teeth", document.getElementById("teeth").value);
-      localStorage.setItem("holder", document.getElementById("holder").value);
-      localStorage.setItem("totalLength", document.getElementById("totalLength").value);
-      localStorage.setItem("diameter", document.getElementById("diameter").value);
-
-      loadData();
-      alert("تم حفظ التعديلات");
-    }
-
-    loadData();
-  </script>
-  <script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCpFul8SVzrKAffWpPhDHjQoobJ8gnwazo",
-  authDomain: "cnc-tools-33edd.firebaseapp.com",
-  projectId: "cnc-tools-33edd",
-  storageBucket: "cnc-tools-33edd.firebasestorage.app",
-  messagingSenderId: "847482467099",
-  appId: "1:847482467099:web:ab901c55df0b48293f59be"
-};
-
-const app = initializeApp(firebaseConfig);
-
-console.log("Firebase Connected");
-
+  loadData();
 </script>
+  
 
 </body>
 </html>
