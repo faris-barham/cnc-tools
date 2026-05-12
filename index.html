@@ -226,6 +226,24 @@
 
     loadData();
   </script>
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCpFul8SVzrKAffWpPhDHjQoobJ8gnwazo",
+  authDomain: "cnc-tools-33edd.firebaseapp.com",
+  projectId: "cnc-tools-33edd",
+  storageBucket: "cnc-tools-33edd.firebasestorage.app",
+  messagingSenderId: "847482467099",
+  appId: "1:847482467099:web:ab901c55df0b48293f59be"
+};
+
+const app = initializeApp(firebaseConfig);
+
+console.log("Firebase Connected");
+
+</script>
 
 </body>
 </html>
