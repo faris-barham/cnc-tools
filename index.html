@@ -87,7 +87,7 @@
     </div>
 
     <div class="item">
-      <div class="title">نوع الماكينة</div>
+      <div class="title">نوع المكينة</div>
       <div class="value" id="showMachine">VF-3</div>
       <select class="admin" id="machine">
         <option>VF-3</option>
@@ -114,14 +114,7 @@
     <div class="item">
       <div class="title">طول الأداة</div>
       <div class="value" id="showToolLength">75 mm</div>
-      <select class="admin" id="toolLength">
-        <option>50 mm</option>
-        <option>60 mm</option>
-        <option>75 mm</option>
-        <option>100 mm</option>
-        <option>120 mm</option>
-        <option>150 mm</option>
-      </select>
+      <input class="admin" id="toolLength" placeholder="مثال: 75 mm">
     </div>
 
     <div class="item">
@@ -151,6 +144,18 @@
       </select>
     </div>
 
+    <div class="item">
+      <div class="title">طول الأداة مع الهولدر</div>
+      <div class="value" id="showTotalLength">120 mm</div>
+      <input class="admin" id="totalLength" placeholder="مثال: 120 mm">
+    </div>
+
+    <div class="item">
+      <div class="title">قطر الأداة</div>
+      <div class="value" id="showDiameter">10 mm</div>
+      <input class="admin" id="diameter" placeholder="مثال: 10 mm">
+    </div>
+
     <button class="admin" onclick="saveData()">حفظ التعديلات</button>
     <button class="small-btn" onclick="adminLogin()">دخول الإدارة</button>
 
@@ -170,6 +175,8 @@
       const toolLength = getData("toolLength", "75 mm");
       const teeth = getData("teeth", "4");
       const holder = getData("holder", "ER32");
+      const totalLength = getData("totalLength", "120 mm");
+      const diameter = getData("diameter", "10 mm");
 
       document.getElementById("showToolNumber").innerText = toolNumber;
       document.getElementById("showMachine").innerText = machine;
@@ -177,6 +184,8 @@
       document.getElementById("showToolLength").innerText = toolLength;
       document.getElementById("showTeeth").innerText = teeth;
       document.getElementById("showHolder").innerText = holder;
+      document.getElementById("showTotalLength").innerText = totalLength;
+      document.getElementById("showDiameter").innerText = diameter;
 
       document.getElementById("toolNumber").value = toolNumber;
       document.getElementById("machine").value = machine;
@@ -184,14 +193,17 @@
       document.getElementById("toolLength").value = toolLength;
       document.getElementById("teeth").value = teeth;
       document.getElementById("holder").value = holder;
+      document.getElementById("totalLength").value = totalLength;
+      document.getElementById("diameter").value = diameter;
     }
 
     function adminLogin() {
       const pass = prompt("أدخل كلمة السر");
 
       if (pass === PASSWORD) {
-        const adminItems = document.querySelectorAll(".admin");
-        adminItems.forEach(item => item.style.display = "block");
+        document.querySelectorAll(".admin").forEach(item => {
+          item.style.display = "block";
+        });
         alert("تم فتح وضع الإدارة");
       } else {
         alert("كلمة السر خطأ");
@@ -205,6 +217,8 @@
       localStorage.setItem("toolLength", document.getElementById("toolLength").value);
       localStorage.setItem("teeth", document.getElementById("teeth").value);
       localStorage.setItem("holder", document.getElementById("holder").value);
+      localStorage.setItem("totalLength", document.getElementById("totalLength").value);
+      localStorage.setItem("diameter", document.getElementById("diameter").value);
 
       loadData();
       alert("تم حفظ التعديلات");
