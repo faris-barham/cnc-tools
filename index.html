@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ar" dir="rtl">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CNC Tool</title>
 
   <style>
     body {
       font-family: Arial;
-      background: #f0f0f0;
-      padding: 40px;
+      background: #f3f4f6;
+      padding: 20px;
     }
 
     .box {
       background: white;
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 400px;
+      max-width: 450px;
       margin: auto;
+      padding: 25px;
+      border-radius: 20px;
     }
 
     h1 {
@@ -24,7 +25,9 @@
     }
 
     .item {
-      margin-top: 20px;
+      margin-top: 18px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 12px;
     }
 
     .title {
@@ -33,8 +36,40 @@
     }
 
     .value {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: bold;
+      margin-top: 5px;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      margin-top: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      background: black;
+      color: white;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .admin {
+      display: none;
+    }
+
+    .small-btn {
+      background: #555;
+      font-size: 15px;
     }
   </style>
 </head>
@@ -43,35 +78,140 @@
 
   <div class="box">
 
-    <h1>Tool Info</h1>
+    <h1>معلومات الأداة</h1>
 
     <div class="item">
-      <div class="title">Machine</div>
-      <div class="value">CNC Milling</div>
+      <div class="title">رقم الأداة</div>
+      <div class="value" id="showToolNumber">T14</div>
+      <input class="admin" id="toolNumber" value="T14">
     </div>
 
     <div class="item">
-      <div class="title">Tool Type</div>
-      <div class="value">End Mill</div>
+      <div class="title">نوع الماكينة</div>
+      <div class="value" id="showMachine">VF-3</div>
+      <select class="admin" id="machine">
+        <option>VF-3</option>
+        <option>VF-2</option>
+        <option>VF-4</option>
+        <option>CNC Milling</option>
+        <option>CNC Turning</option>
+      </select>
     </div>
 
     <div class="item">
-      <div class="title">Length</div>
-      <div class="value">75 mm</div>
+      <div class="title">نوع الأداة</div>
+      <div class="value" id="showToolType">End Mill</div>
+      <select class="admin" id="toolType">
+        <option>End Mill</option>
+        <option>Ball Nose</option>
+        <option>SD</option>
+        <option>Drill</option>
+        <option>Tap</option>
+        <option>Face Mill</option>
+      </select>
     </div>
 
     <div class="item">
-      <div class="title">Teeth</div>
-      <div class="value">4</div>
+      <div class="title">طول الأداة</div>
+      <div class="value" id="showToolLength">75 mm</div>
+      <select class="admin" id="toolLength">
+        <option>50 mm</option>
+        <option>60 mm</option>
+        <option>75 mm</option>
+        <option>100 mm</option>
+        <option>120 mm</option>
+        <option>150 mm</option>
+      </select>
     </div>
 
     <div class="item">
-      <div class="title">Holder</div>
-      <div class="value">ER32</div>
+      <div class="title">عدد الأسنان</div>
+      <div class="value" id="showTeeth">4</div>
+      <select class="admin" id="teeth">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
     </div>
+
+    <div class="item">
+      <div class="title">نوع الهولدر</div>
+      <div class="value" id="showHolder">ER32</div>
+      <select class="admin" id="holder">
+        <option>ER16</option>
+        <option>ER20</option>
+        <option>ER25</option>
+        <option>ER32</option>
+        <option>ER40</option>
+        <option>Side Lock</option>
+        <option>Hydraulic</option>
+      </select>
+    </div>
+
+    <button class="admin" onclick="saveData()">حفظ التعديلات</button>
+    <button class="small-btn" onclick="adminLogin()">دخول الإدارة</button>
 
   </div>
 
-</body>
+  <script>
+    const PASSWORD = "1234";
 
+    function getData(key, defaultValue) {
+      return localStorage.getItem(key) || defaultValue;
+    }
+
+    function loadData() {
+      const toolNumber = getData("toolNumber", "T14");
+      const machine = getData("machine", "VF-3");
+      const toolType = getData("toolType", "End Mill");
+      const toolLength = getData("toolLength", "75 mm");
+      const teeth = getData("teeth", "4");
+      const holder = getData("holder", "ER32");
+
+      document.getElementById("showToolNumber").innerText = toolNumber;
+      document.getElementById("showMachine").innerText = machine;
+      document.getElementById("showToolType").innerText = toolType;
+      document.getElementById("showToolLength").innerText = toolLength;
+      document.getElementById("showTeeth").innerText = teeth;
+      document.getElementById("showHolder").innerText = holder;
+
+      document.getElementById("toolNumber").value = toolNumber;
+      document.getElementById("machine").value = machine;
+      document.getElementById("toolType").value = toolType;
+      document.getElementById("toolLength").value = toolLength;
+      document.getElementById("teeth").value = teeth;
+      document.getElementById("holder").value = holder;
+    }
+
+    function adminLogin() {
+      const pass = prompt("أدخل كلمة السر");
+
+      if (pass === PASSWORD) {
+        const adminItems = document.querySelectorAll(".admin");
+        adminItems.forEach(item => item.style.display = "block");
+        alert("تم فتح وضع الإدارة");
+      } else {
+        alert("كلمة السر خطأ");
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem("toolNumber", document.getElementById("toolNumber").value);
+      localStorage.setItem("machine", document.getElementById("machine").value);
+      localStorage.setItem("toolType", document.getElementById("toolType").value);
+      localStorage.setItem("toolLength", document.getElementById("toolLength").value);
+      localStorage.setItem("teeth", document.getElementById("teeth").value);
+      localStorage.setItem("holder", document.getElementById("holder").value);
+
+      loadData();
+      alert("تم حفظ التعديلات");
+    }
+
+    loadData();
+  </script>
+
+</body>
 </html>
