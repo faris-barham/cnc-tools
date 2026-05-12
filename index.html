@@ -263,7 +263,9 @@ const toolRef = doc(db, "tools", currentTool);
       teeth: "4",
       holder: "ER32",
       totalLength: "120 mm",
-      diameter: "10 mm"
+     diameter: "10 mm",
+
+image: "https://via.placeholder.com/300x200"
     };
 
     document.getElementById("showToolNumber").innerText = data.toolNumber;
@@ -274,7 +276,9 @@ const toolRef = doc(db, "tools", currentTool);
     document.getElementById("showHolder").innerText = data.holder;
     document.getElementById("showTotalLength").innerText = data.totalLength;
     document.getElementById("showDiameter").innerText = data.diameter;
+document.getElementById("toolImage").src = data.image;
 
+document.getElementById("imageUrl").value = data.image;
     document.getElementById("toolNumber").value = data.toolNumber;
     document.getElementById("machine").value = data.machine;
     document.getElementById("toolType").value = data.toolType;
@@ -307,7 +311,9 @@ const toolRef = doc(db, "tools", currentTool);
       teeth: document.getElementById("teeth").value,
       holder: document.getElementById("holder").value,
       totalLength: document.getElementById("totalLength").value,
-      diameter: document.getElementById("diameter").value
+      diameter: document.getElementById("diameter").value,
+
+image: document.getElementById("imageUrl").value
     });
 
     await loadData();
